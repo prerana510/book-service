@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.demo.book_service.dao.BookRepository;
 import com.demo.book_service.model.Book;
@@ -33,5 +34,10 @@ public class BookController {
 	@PostMapping("/books")
 	public Book addBook(@RequestBody Book newBook) {
 		return this.bookRepo.saveAndFlush(newBook);
+	}
+	
+	@DeleteMapping("/books/{bid}")
+	public void deleteBook(@PathVariable int bid) {
+		this.bookRepo.deleteById(bid);
 	}
 }
